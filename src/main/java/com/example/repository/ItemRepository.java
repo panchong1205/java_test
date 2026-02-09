@@ -28,8 +28,8 @@ public class ItemRepository {
         return new ArrayList<>(items.values());
     }
 
-    public void deleteById(Long id) {
-        items.remove(id);
+    public boolean deleteById(Long id) {
+        return items.remove(id) != null;
     }
 
     public boolean existsById(Long id) {
