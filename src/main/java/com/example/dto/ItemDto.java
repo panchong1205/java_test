@@ -1,7 +1,11 @@
 package com.example.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class ItemDto {
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+    
     private String description;
 
     public ItemDto() {}

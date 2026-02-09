@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.dto.ItemDto;
 import com.example.model.Item;
 import com.example.service.ItemService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class ItemController {
     private ItemService itemService;
 
     @PostMapping
-    public ResponseEntity<Item> createItem(@RequestBody ItemDto itemDto) {
+    public ResponseEntity<Item> createItem(@Valid @RequestBody ItemDto itemDto) {
         Item createdItem = itemService.createItem(itemDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdItem);
     }
@@ -37,7 +38,7 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody ItemDto itemDto) {
+    public ResponseEntity<Item> updateItem(@PathVariable Long id, @Valid @RequestBody ItemDto itemDto) {
         Optional<Item> updatedItem = itemService.updateItem(id, itemDto);
         return updatedItem.map(ResponseEntity::ok)
                           .orElseGet(() -> ResponseEntity.notFound().build());

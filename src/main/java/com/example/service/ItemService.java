@@ -41,10 +41,6 @@ public class ItemService {
     }
 
     public boolean deleteItem(Long id) {
-        if (itemRepository.existsById(id)) {
-            itemRepository.deleteById(id);
-            return true;
-        }
-        return false;
+        return itemRepository.deleteById(id);
     }
 }
